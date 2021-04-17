@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import ru.samsung.game.Main;
@@ -16,27 +17,29 @@ public class MainGameScreen extends BaseScreen {
     private Stage stage;
     private ActorPlayer player;
     private ActorSpike spike;
-    private Texture texturePlayer;
-    private Texture textureSpike;
+    private Texture texturePlayer, textureSpike;
+    TextureRegion regionSpike;
 
     public MainGameScreen(Main game) {
         super(game);
         texturePlayer = new Texture("player.png");
         textureSpike = new Texture("spike.png");
+        regionSpike = new TextureRegion(textureSpike, 0, 0, 814, 1092);
     }
 
     @Override
     public void show() {
         stage = new Stage();
+        stage.setDebugAll(true);
 
         player = new ActorPlayer(texturePlayer);
-        spike = new ActorSpike(textureSpike);
+        spike = new ActorSpike(regionSpike);
 
         stage.addActor(player);
         stage.addActor(spike);
 
-        player.setPosition(300 - player.getWidth(), 300 - player.getHeight());
-        spike.setPosition(1500 - player.getWidth(), 300 - player.getHeight());
+        player.setPosition(600 - player.getWidth(), 600 - player.getHeight());
+        spike.setPosition(2000 - player.getWidth(), 600 - player.getHeight());
     }
 
     @Override
@@ -50,6 +53,7 @@ public class MainGameScreen extends BaseScreen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
 
         stage.act();
         stage.draw();

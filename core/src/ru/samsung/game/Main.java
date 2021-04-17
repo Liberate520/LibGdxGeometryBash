@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import ru.samsung.game.screens.Box2DScreen;
 import ru.samsung.game.screens.MainGameScreen;
 
 public class Main extends Game {
@@ -22,7 +23,7 @@ public class Main extends Game {
 		MyProcessor p = new MyProcessor();
 		Gdx.input.setInputProcessor(p);
 
-		setScreen(new MainGameScreen(this));
+		setScreen(new Box2DScreen(this));
 	}
 
 }

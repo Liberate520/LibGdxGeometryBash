@@ -7,9 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class ActorPlayer extends Actor {
 
     private Texture playerImg;
+    float playerWidth = 200;
+    float playerHeight = 200;
 
     public ActorPlayer(Texture playerImg) {
         this.playerImg = playerImg;
+        setSize(playerWidth, playerHeight);
     }
 
     @Override
@@ -19,6 +22,6 @@ public class ActorPlayer extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(playerImg, getX(), getY(), 200, 200);
+        batch.draw(playerImg, getX(), getY(), playerWidth, playerHeight);
     }
 }
