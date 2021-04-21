@@ -1,29 +1,33 @@
 package ru.samsung.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
-import ru.samsung.game.screens.Box2DScreen;
-import ru.samsung.game.screens.MainGameScreen;
+import ru.samsung.game.screens.GameScreen;
 
 public class Main extends Game {
 
-	public static float width, height;
+	private AssetManager manager;
+
+	public AssetManager getManager() {
+		return manager;
+	}
 
 	@Override
 	public void create () {
-		width = Gdx.graphics.getWidth();
-		height = Gdx.graphics.getHeight();
 
-		MyProcessor p = new MyProcessor();
-		Gdx.input.setInputProcessor(p);
+//		MyProcessor p = new MyProcessor();
+//		Gdx.input.setInputProcessor(p);
 
-		setScreen(new Box2DScreen(this));
+		manager = new AssetManager();
+		manager.load("player.png", Texture.class);
+		manager.load("spike.png", Texture.class);
+		manager.load("background.jpg", Texture.class);
+		manager.load("ground.png", Texture.class);
+		manager.load("overground.png", Texture.class);
+		manager.finishLoading();
+
+		setScreen(new GameScreen(this));
 	}
 
 }
