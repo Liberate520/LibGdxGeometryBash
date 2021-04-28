@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import static ru.samsung.game.Constants.IMPULSE_JUMP;
 import static ru.samsung.game.Constants.PIXELS_IN_METRE;
+import static ru.samsung.game.Constants.PLAYER_SPEED;
 
 public class PlayerActor extends Actor {
 
@@ -60,7 +61,7 @@ public class PlayerActor extends Actor {
 
         if (alive){
             float speedY = body.getLinearVelocity().y;
-            body.setLinearVelocity(8, speedY);
+            body.setLinearVelocity(PLAYER_SPEED, speedY);
         }
     }
 

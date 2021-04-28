@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.samsung.game.Constants;
 import ru.samsung.game.Main;
 import ru.samsung.game.actors.SpikeActor;
 import ru.samsung.game.actors.GroundActor;
@@ -83,8 +84,12 @@ public class GameScreen extends BaseScreen{
 
         groundList.add(new GroundActor(world, groundTexture, overgroundTexture, 0, 1, 1000, 1));
         groundList.add(new GroundActor(world, groundTexture, overgroundTexture, 12, 2, 10, 1));
+        groundList.add(new GroundActor(world, groundTexture, overgroundTexture, 30, 2, 10, 1));
 
         spikeList.add(new SpikeActor(world, spikeTexture, 6, 1));
+        spikeList.add(new SpikeActor(world, spikeTexture, 18, 2));
+        spikeList.add(new SpikeActor(world, spikeTexture, 32, 1));
+        spikeList.add(new SpikeActor(world, spikeTexture, 50, 1));
 
         stage.addActor(player);
         for (GroundActor actor: groundList){
@@ -113,6 +118,10 @@ public class GameScreen extends BaseScreen{
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if (player.getX() > 150 && player.isAlive()) {
+            stage.getCamera().translate(Constants.PLAYER_SPEED * delta * Constants.PIXELS_IN_METRE, 0, 0);
+        }
 
         stage.act();
         world.step(delta, 6, 2);
